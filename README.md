@@ -22,6 +22,9 @@ This project is built upon the following resources:
     - [Install Node.js \& npm](#install-nodejs--npm)
     - [Install yarn](#install-yarn)
   - [Run Tutorial](#run-tutorial)
+    - [Chatroom-source](#chatroom-source)
+    - [widget](#widget)
+    - [rasa-voice-agent](#rasa-voice-agent)
 
 
 ## Rasa's Architecture
@@ -79,6 +82,110 @@ npm install --global yarn
 
 ## Run Tutorial
 
-See `README.md` files in each UI examples.
+You can refer to `README.md` files in each UI examples for more detailed explanations. Here's a brief summary.
 
 I recommend first run `chatroom-source`, then try `widget`, and finally play with `rasa-voice-interface`.
+
+### Chatroom-source
+1. Modify `chatbot/02-forms-pizza-ordering-chatbot/credentials.yml` to enable `REST` api, i.e.,
+```yml
+rest:
+
+```
+
+2. **Run Rasa chatbot**. Launch action server and rasa server in 2 seperate terminals:
+```bash
+# Change directory to `chatbot/02-forms-pizza-ordering-chatbot first`
+# In the first terminal window 
+rasa run actions
+# In the second terminal window
+rasa run --enable-api -p 5005 --debug --cors "*"
+```
+
+3. **Start the UI (Start a file server)**. Launch UI from the third terminal window 
+```bash
+# Change directory to `UI/chatroom-source`
+# Skip this line if you already installed dependance for yarn
+yarn install 
+# Then Run
+yarn serve
+```
+And open the website as displayed in the terminal window.
+
+### widget
+1. Modify `chatbot/02-forms-pizza-ordering-chatbot/credentials.yml` to enable `socketio` api, i.e.,
+```yml
+socketio:
+ user_message_evt: user_uttered
+ bot_message_evt: bot_uttered
+ session_persistence: false
+```
+
+2. **Run Rasa chatbot**. Launch action server and rasa server in 2 seperate terminals:
+```bash
+# Change directory to `chatbot/02-forms-pizza-ordering-chatbot first`
+# In the first terminal window 
+rasa run actions
+# In the second terminal window
+rasa run --enable-api -p 5005 --debug --cors "*"
+``` 
+
+3. **Start the UI**. Launch UI from another terminal window.
+```bash
+# Change directory to `UI/widget`
+python -m http.server 8888
+```
+Open the webpage `http://localhost:8888`
+
+### rasa-voice-agent
+
+1. Add custom socket connectors, utilties to run Text-to-speech and Auto-Speech-Recognision into your chatbot.
+> The files are already been added in `components` and `utils`
+2. Download the models
+   1. First install `deepspeech` and download the model from [Deepspeech's release page](https://github.com/mozilla/DeepSpeech/releases/tag/v0.9.3)
+    ```bash
+    # Install DeepSpeech
+    pip3 install deepspeech
+    
+    # Create a folder under `chatbot/02-forms-pizza-ordering-chatbot`
+    cd chatbot/02-forms-pizza-ordering-chatbot
+    mkdir sst_model
+    # Download pre-trained English model files
+    curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspeech-0.9.3-models.pbmm
+    curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspeech-0.9.3-models.scorer
+    ```
+   2. Then install `Coqui's TTS` package. The model will automatically been downloaded when you run the code for the first time.
+    ```bash
+    pip3 install TTS
+    ```
+    
+3. Modify `chatbot/02-forms-pizza-ordering-chatbot/credentials.yml` to enable `socketio` api, i.e.,
+```yml
+utils.voice_connector.VoiceInput:
+  user_message_evt: user_uttered
+  bot_message_evt: bot_uttered
+  session_persistence: false
+```
+4. **Run Rasa chatbot**. Launch action server and rasa server in 2 seperate terminals:
+```bash
+# Change directory to `chatbot/02-forms-pizza-ordering-chatbot` first
+# In the first terminal window 
+rasa run actions
+# In the second terminal window
+rasa run --enable-api -p 5005 --debug --cors "*"
+```
+5. **Launch a file server**. Launch file server from another terminal window.
+```bash
+# Change directory to `UI/widget`
+python -m http.server 8888
+```
+6. **Launch the UI**. Launch the vue app:
+```bash
+# Change directory to `UI/rasa-voice-interface` first
+# Make sure you are using node@14. 
+# If you are using nvm, run `nvm use 14`
+# Skip this line if you already installed dependance for Vue
+npm install
+# When it finishes
+npm run serve
+```
