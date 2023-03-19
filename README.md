@@ -12,6 +12,18 @@ This project is built upon the following resources:
 3. [Mozilla Deepspeech](https://github.com/mozilla/DeepSpeech/tree/r0.9) and [Coqua.ai's TTS](https://github.com/coqui-ai/TTS).
 4. Rasa [learning center](https://learning.rasa.com). 
 
+## Table of Content
+
+- [Rasa Interface Tutorial](#rasa-interface-tutorial)
+  - [Table of Content](#table-of-content)
+  - [Rasa's Architecture](#rasas-architecture)
+  - [Tutorial Content](#tutorial-content)
+  - [Install Dependancies](#install-dependancies)
+    - [Install Node.js \& npm](#install-nodejs--npm)
+    - [Install yarn](#install-yarn)
+  - [Run Tutorial](#run-tutorial)
+
+
 ## Rasa's Architecture
 
 In the previous Lab, we talked about two seperate services:
@@ -43,3 +55,30 @@ We will introduce 3 UIs via different channel:
 3. Create a **Voice agent** using customized **Socket** channel
 
 For this tutorial, we will use the `02-forms-pizza-ordering-chatbot` from `Lab1` as the example chatbot.
+
+## Install Dependancies
+
+You will need `node.js` and `yarn` to run the tutorial. 
+
+> Note: You have to use `node@14` to run `UI/rasa-voice-interface`. 
+
+For Mac users, you can refer to the posts here:
+
+### Install Node.js & npm
+1. If you are using `Apple Silicon Mac`, you can follow the guide here: https://devzilla.io/using-nodejs-14-with-mac-silicon-m1
+2. If you are using `Intel Mac` or Unix-like OS, things are much simplier. 
+   1. Install `nvm` - please follow the official guide [here](https://github.com/nvm-sh/nvm#install--update-script). 
+   2. And use `nvm` to install `node.js` following [examples on GitHub](https://github.com/nvm-sh/nvm#install--update-script). We recommand install version 14 via `nvm install 14`.
+3. If you are using windows computer, you can download from here: https://nodejs.org/en/blog/release/v14.17.3
+
+### Install yarn
+
+```
+npm install --global yarn
+```
+
+## Run Tutorial
+
+See `README.md` files in each UI examples.
+
+I recommend first run `chatroom-source`, then try `widget`, and finally play with `rasa-voice-interface`.

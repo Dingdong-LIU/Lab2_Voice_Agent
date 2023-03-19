@@ -1,9 +1,25 @@
 # Rasa Voice Interface
 
 ## Acknowledgement
-This is a fork from original project by [RasaHQ](https://github.com/RasaHQ/rasa-voice-interface). I fixed the socket version issue and now it is compatible with `python-engineio 4.x.x` and `python-socketio 5.x.x`, which is required by newer `rasa`.
+This is a fork from original project by [RasaHQ](https://github.com/RasaHQ/rasa-voice-interface). I fixed the socket version issue and now it is compatible with `python-engineio 4.x.x` and `python-socketio 5.x.x`, which is required by newer `rasa3.4.4`.
 
-## Original README
+Please follow the original README File below.
+
+> Note: For this specific project, you need Node@14 to run and build
+
+## Table of Content
+- [Rasa Voice Interface](#rasa-voice-interface)
+  - [Acknowledgement](#acknowledgement)
+  - [Table of Content](#table-of-content)
+  - [Original README File](#original-readme-file)
+    - [🤖 How to install and run the Rasa voice interface](#-how-to-install-and-run-the-rasa-voice-interface)
+    - [Which ASR systems can you use with this interface?](#which-asr-systems-can-you-use-with-this-interface)
+    - [How to connect your Rasa assistant to this interface](#how-to-connect-your-rasa-assistant-to-this-interface)
+    - [Authors](#authors)
+  - [:gift: License](#gift-license)
+
+
+## Original README File
 
 A simple open source web interface for building voice assistants with
 Rasa. The interface records the voice input by connecting to the microphone
@@ -21,7 +37,6 @@ Necessary dependencies:
 
 This is how you get the interface downloaded and ready to run:
 ```
-git clone https://github.com/RasaHQ/rasa-voice-interface.git
 cd rasa-voice-interface
 npm install
 ```

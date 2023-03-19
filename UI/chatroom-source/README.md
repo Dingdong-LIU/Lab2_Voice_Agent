@@ -1,12 +1,21 @@
 # React-based Chatroom Component for Rasa Stack
 
-[![CircleCI](https://circleci.com/gh/scalableminds/chatroom.svg?style=svg)](https://circleci.com/gh/scalableminds/chatroom)
+## Table of Content
+- [React-based Chatroom Component for Rasa Stack](#react-based-chatroom-component-for-rasa-stack)
+  - [Table of Content](#table-of-content)
+  - [Features](#features)
+  - [Run the lab](#run-the-lab)
+  - [Usage with Explanations](#usage-with-explanations)
+  - [Development](#development)
+    - [Install dependencies](#install-dependencies)
+    - [Continuously build the Chatroom component](#continuously-build-the-chatroom-component)
+  - [Build](#build)
+  - [License](#license)
 
-<a href="https://npm-scalableminds.s3.eu-central-1.amazonaws.com/@scalableminds/chatroom@master/demo.html"><img src="https://npm-scalableminds.s3.amazonaws.com/%40scalableminds/chatroom/demo.gif" alt="Demo" width="409" height="645" /></a>
 
-**Note: This project is not maintained anymore. If you like to become a community maintainer get in touch with @hotzenklotz. It may still work for your project or serve as a point of reference for others.**
+<!-- **Note: This project is not maintained anymore. If you like to become a community maintainer get in touch with @hotzenklotz. It may still work for your project or serve as a point of reference for others.** -->
 
-[Watch a demo of our Chatroom in action](https://npm-scalableminds.s3.eu-central-1.amazonaws.com/@scalableminds/chatroom@master/demo.html)
+<!-- [Watch a demo of our Chatroom in action](https://npm-scalableminds.s3.eu-central-1.amazonaws.com/@scalableminds/chatroom@master/demo.html) -->
 
 ## Features
 
@@ -21,17 +30,67 @@
 * Hosted on S3 for easy use
 * Simple setup. Works with Rasa's [REST channel](https://rasa.com/docs/rasa/user-guide/connectors/your-own-website/#rest-channels)
 
-## Usage
-1. Embed the `chatroom.js` in the HTML of your website and configure it to connect to your Rasa bot. Either use the S3 hosted version or build it yourself. (see below)
+## Run the lab
+
+The project `chatroom-source` provides a basic interface for interacting with bots on the webpage, which supports text and voice as input. Please refer to https://github.com/scalableminds/chatroom for more details.
+
+* In your Rasa bot setup, make sure to include the Rasa [REST channel](https://rasa.com/docs/rasa/user-guide/connectors/your-own-website/#rest-channels) in your `credentials.yml` file:
+```bash
+rest:
+  # pass
+```
+
+* Install the dependencies for the web application
+```bash
+cd UI/chatroom-source
+# install dependencies if you have not installed
+yarn install
+``` 
+
+* Usage - You need to open 3 terminal/shell windows:
+
+
+*Terminal-1*: For Rasa server. Depending on your setup you might need to add CORS headers, e.g. `--cors "*"`.
+
+```bash
+# change to chatbot directory (just an example)
+cd chatbot/02-forms-pizza-ordering-chatbot
+# Run Rasa server
+rasa run --credentials ./credentials.yml  --enable-api --auth-token XYZ123 --model ./models --endpoints ./endpoints.yml --cors "*"
+```
+
+*Terminal-2*: Run Rasa action server if you need customized actions
+
+```bash
+# change to chatbot directory (just an example)
+cd chatbot/02-forms-pizza-ordering-chatbot
+# Run Rasa action server
+rasa run actions
+```
+
+*Terminal 3*: For web application
+   
+```bash
+cd UI/chatroom-source
+# run the local host
+yarn serve
+```
+Open `http://localhost:8080` in your browser.
+
+
+## Usage with Explanations
+1. Embed the `chatroom.js` in the HTML of your website and configure it to connect to your Rasa bot. Either use the S3 hosted version or `build it yourself`. (see below)
+
+We will use the version build by ourselves. Attached below are the modified version. Please check the original one here on Github: https://github.com/scalableminds/chatroom.git 
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://npm-scalableminds.s3.eu-central-1.amazonaws.com/@scalableminds/chatroom@master/dist/Chatroom.css" />
+  <link rel="stylesheet" href="./dist/Chatroom.css" />
 </head>
 <body>
   <div class="chat-container"></div>
 
-  <script src="https://npm-scalableminds.s3.eu-central-1.amazonaws.com/@scalableminds/chatroom@master/dist/Chatroom.js"/></script>
+  <script src="./dist/Chatroom.js"/></script>
   <script type="text/javascript">
     var chatroom = new window.Chatroom({
       host: "http://localhost:5005",
@@ -95,10 +154,10 @@ Open `http://localhost:8080/demo.html` in your browser.
 yarn build
 ```
 
-Distributable files will be created in folder `dist`.
+Distributable files will be created in folder `dist`. I have already build one and can be found in existing `dist` directory. You can rebuild if you like.
 
 ## License
 
 AGPL v3
 
-Made by [scalable minds](https://scalableminds.com)
+Made by [scalable minds](https://scalableminds.com). Altered by Dingdong.
