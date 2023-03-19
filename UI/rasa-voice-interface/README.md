@@ -36,12 +36,12 @@ Necessary dependencies:
 
 
 This is how you get the interface downloaded and ready to run:
-```
+```bash
 cd rasa-voice-interface
 npm install
 ```
 And finally start the project with:
-```
+```bash
 npm run serve
 ```
 
