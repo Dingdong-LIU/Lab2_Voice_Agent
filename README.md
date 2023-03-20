@@ -96,13 +96,24 @@ rest:
 2. **Run Rasa chatbot**. Launch action server and rasa server in 2 separate terminals:
 ```bash
 # Change directory to `chatbot/02-forms-pizza-ordering-chatbot first`
+# You need to run `rasa train` first if you haven't train the rasa model
+rasa train
 # In the first terminal window 
 rasa run actions
 # In the second terminal window
 rasa run --enable-api -p 5005 --debug --cors "*"
 ```
 
-3. **Start the UI (Start a file server)**. Launch UI from the third terminal window 
+3. **Start the UI**. Launch UI from the third terminal window 
+
+You can start the UI directly by:
+```bash
+python -m http.server 8889
+```
+And then open `http://localhost:8889`
+> Note: You may come into `block by CORS policy error` when you are using newer version of `Google Chrome`. You can refer to this post to temporarily disable `Block insecure private network requests`: https://stackoverflow.com/questions/69542810/has-been-blocked-by-cors-policy-the-request-client-is-not-a-secure-context-and
+
+If you like to compile it yourself / do further development, you can run the following commands:
 ```bash
 # Change directory to `UI/chatroom-source`
 # Skip this line if you already installed dependance for yarn
@@ -137,6 +148,8 @@ python -m http.server 8888
 ```
 Open the webpage `http://localhost:8888`
 
+> Note: You may come into `block by CORS policy` error when you are using newer version of `Google Chrome`. You can refer to this post to temporarily disable `Block insecure private network requests`: https://stackoverflow.com/questions/69542810/has-been-blocked-by-cors-policy-the-request-client-is-not-a-secure-context-and
+
 ### rasa-voice-agent
 
 1. Add custom socket connectors, and utilities to run Text-to-speech and Auto-Speech-Recognision into your chatbot.
@@ -149,7 +162,8 @@ Open the webpage `http://localhost:8888`
     
     # Create a folder under `chatbot/02-forms-pizza-ordering-chatbot`
     cd chatbot/02-forms-pizza-ordering-chatbot
-    mkdir sst_model
+    mkdir stt_model
+    cd stt_model
     # Download pre-trained English model files
     curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspeech-0.9.3-models.pbmm
     curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspeech-0.9.3-models.scorer
