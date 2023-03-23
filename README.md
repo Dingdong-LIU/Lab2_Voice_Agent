@@ -25,6 +25,7 @@ This project is built upon the following resources:
     - [Chatroom-source](#chatroom-source)
     - [widget](#widget)
     - [rasa-voice-agent](#rasa-voice-agent)
+  - [Known Issue](#known-issue)
 
 
 ## Rasa's Architecture
@@ -203,3 +204,6 @@ npm install
 # When it finishes
 npm run serve
 ```
+
+## Known Issue
+1. The 3rd UI, `rasa-voice-interface`, is not fully workable with `Apple Silicon Mac`. The UI operates well, but the `deepspeech` and `TTS` module is not compatible with `M1 chips`. You may replace these 2 modules to make a voice agent.
