@@ -10,7 +10,8 @@ This project is built upon the following resources:
 1. https://github.com/scalableminds/chatroom which provides a great Chatroom UI.
 2. https://github.com/RasaHQ/rasa-voice-interface which provided a voice interface.
 3. [Mozilla Deepspeech](https://github.com/mozilla/DeepSpeech/tree/r0.9) and [Coqua.ai's TTS](https://github.com/coqui-ai/TTS).
-4. Rasa [learning center](https://learning.rasa.com). 
+4. Rasa [learning center](https://learning.rasa.com).
+5. Some blogs that provided me with [code example](https://rasa.com/blog/how-to-build-a-voice-assistant-with-open-source-rasa-and-mozilla-tools/) and [debug hints](https://dustyposa.github.io/posts/d7e97916/)
 
 ## Table of Content
 
